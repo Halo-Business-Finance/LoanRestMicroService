@@ -1,6 +1,5 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ * Product of Halo Buiness Finance
  */
 package com.halobusinessfinance.microservice.controller;
 
@@ -19,13 +18,13 @@ public final class RestControllerResponses {
     private static Map<String, String> responseMap;
     
     
-    public static final Map<String, String> process() {
+    public static final Map<String, String> processSuccess() {
         responseMap = new HashMap<>();
 
        
        
             responseMap.put("isSuccess", "true");
-            responseMap.put("message", "message");
+            
             
 
        
@@ -36,7 +35,7 @@ public final class RestControllerResponses {
         responseMap = new HashMap<>();
 
         responseMap.put("isError", "true");
-        responseMap.put("reason", "invalid userid / pasword");
+        responseMap.put("reason", "no results found");
         return responseMap;
     }
 

@@ -1,6 +1,5 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Interface.java to edit this template
+ * Product of Halo Buiness Finance
  */
 package com.halobusinessfinance.microservice.loan.repository;
 
@@ -15,7 +14,8 @@ import org.springframework.stereotype.Repository;
 
 /**
  *
- * @author root
+ * @author Michael Ritchson
+ * Based on https://www.mongodb.com/compatibility/spring-boot
  */
 
 
@@ -26,8 +26,12 @@ public interface LoanRepository extends MongoRepository<Loans, String>{
   Loans findNameOfBorrower(String loanType);
     
   //@Query(value="{loanType:'?0'}", fields="{'loanType' : 1, 'nameOfBorrower' : 1}")
+  //@Query(value="{loanType:'?0'}")
   @Override
   List<Loans> findAll();
+  
+  @Query(value="{loanType:'?0'}")
+  List<Loans> findAllByLoanType(String loanType);
     
   public long count(); 
 }

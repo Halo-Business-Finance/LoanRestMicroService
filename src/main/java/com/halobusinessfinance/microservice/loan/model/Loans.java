@@ -1,10 +1,9 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ * Product of Halo Buiness Finance
  */
 package com.halobusinessfinance.microservice.loan.model;
 
-import com.halobusinessfinance.microservice.loan.repository.Payload;
+import java.util.List;
 import lombok.Data;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -28,7 +27,8 @@ public class Loans {
     private String nameOfBusiness;
     private String phoneNumber;
     private String prequalifyAnswers;
-    private Payload payload;
+    private List loan;
+    private List payload;
 
     public Loans(String id,
             String accepted,
@@ -54,11 +54,21 @@ public class Loans {
         
     }
     
-    public Payload getPayload() {
+    
+    public List getLoan() {
+         return loan;
+     }
+     
+     public void setLoan(List loan) {
+         this.loan = loan;
+     }
+
+    
+    public List getPayload() {
          return payload;
      }
      
-     public void setPayload(Payload payload) {
+     public void setPayload(List payload) {
          this.payload = payload;
      }
     

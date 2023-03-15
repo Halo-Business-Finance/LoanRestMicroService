@@ -1,21 +1,12 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ * Product of Halo Buiness Finance
  */
-package com.halobusinessfinance.microservice.loan.repository;
+package com.halobusinessfinance.microservice.loan.model;
 
 // Importing class
+import java.util.List;
 import lombok.Data;
 
-/*
-item.getAccepted(),
-                    item.getAmountToBeBorrowed(),
-                    item.getEmailOfBorrower(),
-                    item.getLoanType(),
-                    item.getLoanTypeDescription(),
-                    item.getNameOfBorrower(),
-                    item.getNameOfBusiness()
-*/
 @Data
 public class Payload {
     private String accepted;
@@ -25,16 +16,17 @@ public class Payload {
     private String loanTypeDescription;
     private String nameOfBorrower;
     private String NameOfBusiness;
+    private List loan;
+    
    
-    
-    
     public Payload (String accepted,
                     String amountToBeBorrowed,
                     String emailOfBorrower,
                     String loanType,
                     String loanTypeDescription,
                     String nameOfBorrower,
-                    String nameOfBusiness) {
+                    String nameOfBusiness,
+                    List loan) {
         this.accepted = accepted;
         this.amountToBeBorrowed = amountToBeBorrowed;
         this.emailOfBorrower = emailOfBorrower;
@@ -42,8 +34,16 @@ public class Payload {
         this.loanTypeDescription = loanTypeDescription;
         this.nameOfBorrower = nameOfBorrower;
         this.NameOfBusiness = nameOfBusiness;
-        
-        
+        this.loan = loan;
+
     }
+    
+     public List getLoan() {
+         return loan;
+     }
+     
+     public void setLoan(List loan) {
+         this.loan = loan;
+     }
     
 }
