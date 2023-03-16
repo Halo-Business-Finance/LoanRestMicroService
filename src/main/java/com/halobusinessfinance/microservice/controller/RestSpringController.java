@@ -21,8 +21,10 @@ import org.springframework.data.mongodb.repository.config.EnableMongoRepositorie
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -41,18 +43,25 @@ public abstract class RestSpringController {
         SpringApplication.run(RestSpringController.class, args);
     }
 
-    @PostMapping(path = "/api/admin/get-all-loan-requests", produces = "application/json")
+    @GetMapping(path = "/api/admin/get-all-loan-requests", produces = "application/json")
     @ResponseStatus(HttpStatus.CREATED)
-    public ResponseEntity<Object> getAllLoanRequests(@RequestBody Loans loans) {
+    public ResponseEntity<Object> getAllLoanRequests(@RequestParam("status") String status, 
+                                    @RequestParam("currentPage") int currentPage,
+                                    @RequestParam("take") int take) {
+   // public String getAllLoanRequests() {
+        Loans loans = new Loans();
+        loans.setLoanType("102");
+        
         Map<String, Object> responseMap = new HashMap<>();
 
         System.out.println("Getting items for the loanType " + loans.getLoanType());
         // LoanRepository repo = null;
-        List<Loans> list = repo.findAllByLoanType(loans.getLoanType());
+        List<Loans> list = repo.findAllByStatus(status);
 
         ArrayList<Payload> payloadList = new ArrayList<>();
         list.forEach(item -> {
             Payload payload = new Payload(item.getAccepted(),
+                    item.getStatus(),
                     item.getAmountToBeBorrowed(),
                     item.getEmailOfBorrower(),
                     item.getLoanType(),

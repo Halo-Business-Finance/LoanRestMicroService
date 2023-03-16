@@ -18,6 +18,7 @@ public class Loans {
 
     @Id
     private String id;
+    private String status;
     private String accepted;
     private String amountToBeBorrowed;
     private String emailOfBorrower;
@@ -31,6 +32,7 @@ public class Loans {
     private List payload;
 
     public Loans(String id,
+            String status,
             String accepted,
             String amountToBeBorrowed,
             String emailOfBorrower,
@@ -42,6 +44,7 @@ public class Loans {
             String prequalifyAnswers) {
         super();
         this.id = id;
+        this.status = status;
         this.accepted = accepted;
         this.amountToBeBorrowed = amountToBeBorrowed;
         this.emailOfBorrower = emailOfBorrower;
@@ -51,6 +54,10 @@ public class Loans {
         this.nameOfBusiness = nameOfBusiness;
         this.phoneNumber = phoneNumber;
         this.prequalifyAnswers = prequalifyAnswers;
+        
+    }
+    
+    public Loans() {
         
     }
     

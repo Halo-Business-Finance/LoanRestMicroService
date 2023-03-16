@@ -10,6 +10,7 @@ import lombok.Data;
 @Data
 public class Payload {
     private String accepted;
+    private String status;
     private String amountToBeBorrowed;
     private String emailOfBorrower;
     private String loanType;
@@ -20,6 +21,7 @@ public class Payload {
     
    
     public Payload (String accepted,
+                    String status,
                     String amountToBeBorrowed,
                     String emailOfBorrower,
                     String loanType,
@@ -28,6 +30,7 @@ public class Payload {
                     String nameOfBusiness,
                     List loan) {
         this.accepted = accepted;
+        this.status = status;
         this.amountToBeBorrowed = amountToBeBorrowed;
         this.emailOfBorrower = emailOfBorrower;
         this.loanType = loanType;

@@ -30,8 +30,8 @@ public interface LoanRepository extends MongoRepository<Loans, String>{
   @Override
   List<Loans> findAll();
   
-  @Query(value="{loanType:'?0'}")
-  List<Loans> findAllByLoanType(String loanType);
+  @Query(value="{status:'?0'}")
+  List<Loans> findAllByStatus(String status);
     
   public long count(); 
 }
