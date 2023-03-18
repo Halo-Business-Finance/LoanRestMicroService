@@ -3,6 +3,7 @@
  */
 package com.halobusinessfinance.microservice.loan.model;
 
+import java.util.Date;
 import java.util.List;
 import lombok.Data;
 import org.springframework.data.annotation.Id;
@@ -27,34 +28,48 @@ public class Loans {
     private String nameOfBorrower;
     private String nameOfBusiness;
     private String phoneNumber;
-    private String prequalifyAnswers;
-    private List loan;
+    private PreQualifyAnswers prequalifyAnswers;
+    //private List loan;
     private List payload;
+    private String applicationNumber;
+    private String applicationStartedDate;
+    private String formProgress;
+    private String loanTypes;
+    private String loanTypesString;
+    private String started;
 
-    public Loans(String id,
-            String status,
-            String accepted,
-            String amountToBeBorrowed,
-            String emailOfBorrower,
-            String loanTypeDescription,
-            String loanType,
-            String nameOfBorrower,
-            String nameOfBusiness,
-            String phoneNumber,
-            String prequalifyAnswers) {
-        super();
-        this.id = id;
-        this.status = status;
+
+
+   public Loans(String accepted,
+                    String status,
+                    String amountToBeBorrowed,
+                    String emailOfBorrower,
+                    String loanType,
+                    String loanTypeDescription,
+                    String nameOfBorrower,
+                    String nameOfBusiness,
+                    String phoneNumber,
+                    String applicationNumber,
+                    String applicationStartedDate,
+                    String formProgress,
+                    String loanTypes,
+                    String loanTypesString,
+                    String started) {
         this.accepted = accepted;
+        this.status = status;
         this.amountToBeBorrowed = amountToBeBorrowed;
         this.emailOfBorrower = emailOfBorrower;
-        this.loanTypeDescription = loanTypeDescription;
         this.loanType = loanType;
+        this.loanTypeDescription = loanTypeDescription;
         this.nameOfBorrower = nameOfBorrower;
         this.nameOfBusiness = nameOfBusiness;
         this.phoneNumber = phoneNumber;
-        this.prequalifyAnswers = prequalifyAnswers;
-        
+        this.applicationNumber = applicationNumber;
+        this.applicationStartedDate = applicationStartedDate;
+        this.formProgress = formProgress;
+        this.loanTypes = loanTypes;
+        this.started = started;
+        this.loanTypesString = loanTypesString;
     }
     
     public Loans() {
@@ -62,22 +77,30 @@ public class Loans {
     }
     
     
-    public List getLoan() {
-         return loan;
+   // public List getLoan() {
+  //       return loan;
+   //  }
+     
+   //  public void setLoan(List loan) {
+   //      this.loan = loan;
+  //   }
+     
+     public PreQualifyAnswers getPrequalifyAnswers() {
+         return prequalifyAnswers;
      }
      
-     public void setLoan(List loan) {
-         this.loan = loan;
+     public void setPrequalifyAnswers(PreQualifyAnswers prequalifyAnswers) {
+         this.prequalifyAnswers = prequalifyAnswers;
      }
-
-    
-    public List getPayload() {
+     
+ 
+  public List getPayload() {
          return payload;
-     }
+   }
      
-     public void setPayload(List payload) {
-         this.payload = payload;
-     }
+  public void setPayload(List payload) {
+       this.payload = payload;
+   }
     
 
 }

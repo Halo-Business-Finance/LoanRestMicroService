@@ -9,7 +9,6 @@ package com.halobusinessfinance.microservice.controller;
  */
 import com.halobusinessfinance.microservice.loan.model.Loans;
 import com.halobusinessfinance.microservice.loan.repository.LoanRepository;
-import com.halobusinessfinance.microservice.loan.model.Payload;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -48,43 +47,51 @@ public abstract class RestSpringController {
     public ResponseEntity<Object> getAllLoanRequests(@RequestParam("status") String status, 
                                     @RequestParam("currentPage") int currentPage,
                                     @RequestParam("take") int take) {
-   // public String getAllLoanRequests() {
         Loans loans = new Loans();
-        loans.setLoanType("102");
+        loans.setStatus(status);
         
         Map<String, Object> responseMap = new HashMap<>();
 
-        System.out.println("Getting items for the loanType " + loans.getLoanType());
+        System.out.println("Getting items for the loan status " + loans.getStatus());
         // LoanRepository repo = null;
         List<Loans> list = repo.findAllByStatus(status);
 
-        ArrayList<Payload> payloadList = new ArrayList<>();
+        ArrayList<Loans> loanList = new ArrayList<>();
         list.forEach(item -> {
-            Payload payload = new Payload(item.getAccepted(),
-                    item.getStatus(),
-                    item.getAmountToBeBorrowed(),
-                    item.getEmailOfBorrower(),
-                    item.getLoanType(),
-                    item.getLoanTypeDescription(),
-                    item.getNameOfBorrower(),
-                    item.getNameOfBusiness(),
-                    item.getLoan());
-            payloadList.add(payload);
+        Loans loan = new Loans( item.getAccepted(),
+                                item.getStatus(),
+                                item.getAmountToBeBorrowed(),
+                                item.getEmailOfBorrower(),
+                                item.getLoanType(),
+                                item.getLoanTypeDescription(),
+                                item.getNameOfBorrower(),
+                                item.getNameOfBusiness(),
+                                item.getPhoneNumber(),
+                                item.getApplicationNumber(),
+                                item.getApplicationStartedDate(),
+                                item.getFormProgress(),
+                                item.getLoanTypes(),
+                                item.getLoanTypesString(),
+                                item.getStarted());
+            loanList.add(loan);
         }
         );
-        loans.setPayload(payloadList);
+        loans.setPayload(loanList);
 
-        responseMap.put("Payload", payloadList);
+        responseMap.put("payload", loanList);
         responseMap.put("isSuccess", "true");
         return ResponseEntity.ok(responseMap);
     }
 
-    @PostMapping(path = "/api/admin/get-loan-requests-summary", produces = "application/json")
+    @PostMapping(path = "/api/borrower/create-prequalify-request", produces = "application/json")
     @ResponseStatus(HttpStatus.CREATED)
-    public ResponseEntity<Object> getLoanRequestsSummary(@RequestBody Loans loans) {
-        Map<String, Object> response = new HashMap<>();
-
-        return ResponseEntity.ok(response);
+    public ResponseEntity<Object> createPreQualify(@RequestBody Loans loans) {
+        loans.setStatus("all");
+        repo.save(loans);
+        Map<String, Object> responseMap = new HashMap<>();
+        responseMap.put("isSuccess", "true");
+        responseMap.put("message", "success");
+        return ResponseEntity.ok(responseMap);
     }
 
 }
