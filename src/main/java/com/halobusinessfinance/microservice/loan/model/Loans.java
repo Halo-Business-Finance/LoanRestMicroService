@@ -32,11 +32,14 @@ public class Loans {
     //private List loan;
     private List payload;
     private String applicationNumber;
-    private String applicationStartedDate;
+    private String applicationStarted;
     private String formProgress;
     private String loanTypes;
-    private String loanTypesString;
+    private String loanTypeString;
     private String started;
+    private String loanRequestId;
+    private String loanRequestStatus;
+    
 
 
 
@@ -50,11 +53,13 @@ public class Loans {
                     String nameOfBusiness,
                     String phoneNumber,
                     String applicationNumber,
-                    String applicationStartedDate,
+                    String applicationStarted,
                     String formProgress,
                     String loanTypes,
-                    String loanTypesString,
-                    String started) {
+                    String loanTypeString,
+                    String started,
+                    String loanRequestId,
+                    String loanRequestStatus) {
         this.accepted = accepted;
         this.status = status;
         this.amountToBeBorrowed = amountToBeBorrowed;
@@ -65,11 +70,14 @@ public class Loans {
         this.nameOfBusiness = nameOfBusiness;
         this.phoneNumber = phoneNumber;
         this.applicationNumber = applicationNumber;
-        this.applicationStartedDate = applicationStartedDate;
+        this.applicationStarted = applicationStarted;
         this.formProgress = formProgress;
         this.loanTypes = loanTypes;
         this.started = started;
-        this.loanTypesString = loanTypesString;
+        this.loanTypeString = loanTypeString;
+        this.loanRequestId = loanRequestId;
+        this.loanRequestStatus = loanRequestStatus;
+       
     }
     
     public Loans() {

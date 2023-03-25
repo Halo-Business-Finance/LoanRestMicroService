@@ -5,12 +5,8 @@ package com.halobusinessfinance.microservice.loan.repository;
 
 import com.halobusinessfinance.microservice.loan.model.Loans;
 import java.util.List;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.mongodb.repository.Query;
-import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Repository;
 
 /**
  *
@@ -22,8 +18,7 @@ import org.springframework.stereotype.Repository;
 public interface LoanRepository extends MongoRepository<Loans, String>{
  
     
-  @Query("{nameOfBorrower:'?0'}")
-  Loans findNameOfBorrower(String loanType);
+  
     
   //@Query(value="{loanType:'?0'}", fields="{'loanType' : 1, 'nameOfBorrower' : 1}")
   //@Query(value="{loanType:'?0'}")
@@ -32,6 +27,12 @@ public interface LoanRepository extends MongoRepository<Loans, String>{
   
   @Query(value="{status:'?0'}")
   List<Loans> findAllByStatus(String status);
+  
+  @Query(value="{applicationNumber:'?0'}")
+  List<Loans> findByApplicationNumber(String applicationNumber);
+  
+  @Query(value="{loanTypes:'?0'}")
+  List<Loans> findLoanByTypes(String loanTypes);
     
   public long count(); 
 }
